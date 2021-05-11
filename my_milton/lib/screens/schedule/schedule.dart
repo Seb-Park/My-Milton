@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_milton/screens/schedule/components/top_bar.dart';
 import 'package:my_milton/values/constants.dart';
 import 'components/schedule_item.dart';
 
@@ -71,52 +72,7 @@ class _ScheduleState extends State<Schedule> {
                 color: paleGreen),
           ],
         ),
-        Container(
-          width: double.infinity,
-          height: 150,
-          child: Material(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                RichText(
-                    text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: '2021.05.07',
-                    ),
-                    TextSpan(
-                        text: 'FRI', style: TextStyle(color: Colors.lightBlue)),
-                  ],
-                )),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 20.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Chip(
-                            label: Text("Mon"),
-                            padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                        Chip(
-                            label: Text("Tue"),
-                            padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                        Chip(
-                            label: Text("Wed"),
-                            padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                        Chip(
-                            label: Text("Thu"),
-                            padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                        Chip(
-                            label: Text("Fri"),
-                            padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                      ]),
-                )
-              ],
-            ),
-            elevation: 5.0,
-          ),
-        )
+        ScheduleTop()
       ],
     );
   }
