@@ -4,10 +4,15 @@ import 'package:flutter/material.dart';
 const double schedulePeriodWidth = 270;
 const double topBarHeight = 150;
 const double defaultDotSize = 15;
+const double defaultTimelineWidth = 3;
 const double topItemDistanceFromTop = 20;
 const double scheduleItemBorderRadius = 50;
 const double scheduleItemTextVerticalPadding = 8.0;
 const double scheduleItemMargin = 8.0;
+const double schedulePeriodFontSize = 15.0;
+
+//Scaffold
+const Color navBarColor = Color(0xFFf5f5f5);
 
 //Aaron's Class Colors
 const Color paleOrange = Color(0xFFffe3d8);

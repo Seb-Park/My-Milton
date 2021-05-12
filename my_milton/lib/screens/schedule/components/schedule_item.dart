@@ -25,6 +25,10 @@ class ScheduleItem extends StatelessWidget {
                 children: [
                   Text(
                     this.period.toString(),
+                    style: TextStyle(
+                      fontFamily: 'Oswald',
+                      fontSize: schedulePeriodFontSize,
+                    ),
                   ),
                   Container(
                     height: defaultDotSize,

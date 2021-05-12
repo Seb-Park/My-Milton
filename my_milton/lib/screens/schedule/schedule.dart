@@ -36,33 +36,31 @@ class _ScheduleState extends State<Schedule> {
                           children: [
                             Text(
                               "x",
-                              style: TextStyle(),
+                              style: TextStyle(color: Colors.transparent, fontSize: schedulePeriodFontSize)
                             ),
-                            Container(
-                                width: 3,
-                                height: 500,
-                                child: Material(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(
-                                              scheduleItemBorderRadius))),
-                                  color: darkGray75,
-                                )),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: (defaultDotSize-defaultTimelineWidth)/2),
+                              child: Container(
+                                  width: defaultTimelineWidth,
+                                  height: 500,
+                                  child: Material(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                scheduleItemBorderRadius))),
+                                    color: darkGray75,
+                                  )),
+                            ),
                           ],
                         ),
                       ),
                       Container(
-                        color: Colors.red,
                         child: Padding(
                           padding: const EdgeInsets.all(scheduleItemMargin),
                           child: Container(
-                              color: Colors.black,
                               child: SizedBox(
                                 width: schedulePeriodWidth,
                                 height: 20,
-                                child: Container(
-                                  color: Colors.white,
-                                ),
                               )),
                         ),
                       ),
