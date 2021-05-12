@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_milton/screens/schedule/components/schedule_day_chip.dart';
+import 'package:my_milton/values/constants.dart';
 
 class ScheduleTop extends StatefulWidget {
   int dayNum;
@@ -45,7 +46,6 @@ class _ScheduleTopState extends State<ScheduleTop> {
     for (var i = 0; i < widget.dayChips.length; i++) {
       widget.dayChips[i].onTap = () {
         setDay(i);
-        print("set to day $i");
       };
     }
   }
@@ -55,7 +55,7 @@ class _ScheduleTopState extends State<ScheduleTop> {
     _setChipFunctions();
     return Container(
       width: double.infinity,
-      height: 150,
+      height: topBarHeight,
       child: Material(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
