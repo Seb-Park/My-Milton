@@ -1,5 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
+import 'package:my_milton/blocs/schedule/schedule_repository.dart';
 import 'package:my_milton/screens/schedule/schedule.dart';
 import 'package:my_milton/values/constants.dart';
 
@@ -21,16 +24,18 @@ class _HomeWrapperState extends State<HomeWrapper> {
           backgroundColor: paleBlue,
           color: navBarColor,
           items: <Widget>[
-            Icon(Icons.calendar_today, size: 30, color: paleOrange,),
-            Icon(Icons.chat_bubble_outline, size: 30, color: paleOrange,),
-            Icon(Icons.list, size: 30, color: paleOrange,),
+            Icon(Icons.calendar_today, size: 30, color: navButtonColor,),
+            Icon(Icons.chat_bubble_outline, size: 30, color: navButtonColor,),
+            Icon(Icons.list, size: 30, color: navButtonColor,),
           ],
           onTap: (index) {
             //Handle button tap
           },
         ),
       ),
-      body: Schedule(),
+      body: BlocProvider(
+        create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
+        child: Schedule()),
     );
   }
 }

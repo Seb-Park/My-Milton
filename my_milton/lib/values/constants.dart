@@ -13,6 +13,7 @@ const double schedulePeriodFontSize = 15.0;
 
 //Scaffold
 const Color navBarColor = Color(0xFFf5f5f5);
+const Color navButtonColor = Color(0xFFff9e61);
 
 //Aaron's Class Colors
 const Color paleOrange = Color(0xFFffe3d8);

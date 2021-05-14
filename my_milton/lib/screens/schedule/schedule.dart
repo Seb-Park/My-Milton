@@ -13,7 +13,6 @@ class Schedule extends StatefulWidget {
 class _ScheduleState extends State<Schedule> {
   @override
   Widget build(BuildContext context) {
-//     return Text('Hello, World!', style: Theme.of(context).textTheme.headline4);
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
