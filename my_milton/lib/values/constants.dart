@@ -24,3 +24,5 @@ const Color paleBlue = Color(0xFFbfebfa);
 const Color paleOcean = Color(0xFFccf4ec);
 const Color paleGreen = Color(0xFFd0f9dc);
 const Color darkGray75 = Color (0xFF4b4b4b);
+
+const List<Color> periodColorOrder = [paleOrange,paleRed,palePink,palePurple,paleBlue,paleOcean,paleGreen,paleOrange];

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_events.dart';
 import 'package:my_milton/blocs/schedule/schedule_states.dart';
+import 'package:my_milton/components/column_builder.dart';
 import 'package:my_milton/screens/schedule/components/top_bar.dart';
 import 'package:my_milton/values/constants.dart';
 import 'components/schedule_item.dart';
@@ -15,6 +16,19 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
+  GlobalKey _scheduleColumnKey = GlobalKey();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    super.initState();
+  }
+
+  _afterLayout(_) {
+    // final RenderBox scheduleColumnRenderbox = _scheduleColumnKey.currentContext.findRenderObject();
+    // print(scheduleColumnRenderbox.size.height);
+  }
+
   @override
   Widget build(BuildContext context) {
     final scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
@@ -25,7 +39,7 @@ class _ScheduleState extends State<Schedule> {
       if (state is ScheduleNotCalled) {
         return Container();
       } else if (state is ScheduleLoading) {
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       } else if (state is ScheduleLoaded) {
         return Stack(
           children: <Widget>[
@@ -84,61 +98,20 @@ class _ScheduleState extends State<Schedule> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: <Widget>[
-                      SizedBox(height: topBarHeight + topItemDistanceFromTop),
-                      ScheduleItem(
-                        period: 1,
-                        className: "Adv. Physics",
-                        teacher: "Pedersen",
-                        room: "PSC201",
-                        color: paleOrange,
-                      ),
-                      ScheduleItem(
-                        period: 2,
-                        className: "Adv. Physics",
-                        teacher: "Pedersen",
-                        room: "PSC201",
-                        color: paleOrange,
-                      ),
-                      ScheduleItem(
-                        period: 3,
-                        className: "Community/Advisory",
-                        teacher: "Nobles",
-                        room: "COMM-1",
-                        color: paleRed,
-                      ),
-                      ScheduleItem(
-                        period: 4,
-                        className: "Chinese 5",
-                        teacher: "Zhou",
-                        room: "WRE312",
-                        color: palePink,
-                      ),
-                      ScheduleItem(
-                        period: 5,
-                        teacher: "",
-                        color: palePurple,
-                      ),
-                      ScheduleItem(
-                        period: 6,
-                        className: "English, Craft of Non-Fictions",
-                        teacher: "Polk",
-                        room: "WRN317",
-                        color: paleBlue,
-                      ),
-                      ScheduleItem(
-                        period: 7,
-                        teacher: "",
-                        color: paleOcean,
-                      ),
-                      ScheduleItem(
-                          period: 8,
-                          className: "US History",
-                          teacher: "Blanton",
-                          room: "WGG305",
-                          color: paleGreen),
-                    ],
+                  Container(
+                    key: _scheduleColumnKey,
+                    child: ColumnBuilder(
+                      itemCount:
+                          state.loadedSchedule.scheduledPeriods.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index == 0) {
+                          return SizedBox(
+                              height: topBarHeight + topItemDistanceFromTop);
+                        }
+                        return ScheduleItem.fromPeriodModel(
+                            state.loadedSchedule.scheduledPeriods[index - 1]);
+                      },
+                    ),
                   ),
                 ],
               ),

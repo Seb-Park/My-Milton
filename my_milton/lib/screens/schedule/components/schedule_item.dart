@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_milton/models/schedule_model.dart';
 import 'package:my_milton/values/constants.dart';
+import 'package:my_milton/extensions/duration_extension.dart';
 
 class ScheduleItem extends StatelessWidget {
   String className;
@@ -7,9 +9,11 @@ class ScheduleItem extends StatelessWidget {
   String room;
   int period;
   Color color;
-
+  Duration startTime;
+  Duration endTime;
+  
   ScheduleItem(
-      {this.className, this.teacher, this.room, this.period, this.color});
+      {this.className, this.teacher, this.room, this.period, this.color, this.startTime, this.endTime});
 
   Widget build(BuildContext context) {
     return Container(
@@ -72,7 +76,7 @@ class ScheduleItem extends StatelessWidget {
                                         softWrap: false,
                                       ),
                                       Text("${this.teacher} ${this.room}"),
-                                      Text("8:05 - 8:50",
+                                      Text("${TimeMethods.durationToReadableTime(startTime)} - ${TimeMethods.durationToReadableTime(endTime)}",
                                           style: TextStyle(
                                               color: Colors.grey,
                                               fontWeight: FontWeight.w300))
@@ -85,6 +89,18 @@ class ScheduleItem extends StatelessWidget {
               ),
             ),
           ]),
+    );
+  }
+
+  factory ScheduleItem.fromPeriodModel(PeriodModel periodModel){
+    return ScheduleItem(
+      className: periodModel.className,
+      teacher: periodModel.teacherLastName,
+      room: periodModel.room,
+      period: periodModel.periodNumber,
+      color: periodColorOrder[periodModel.periodNumber-1],
+      startTime: periodModel.startTime,
+      endTime: periodModel.endTime,
     );
   }
 }
