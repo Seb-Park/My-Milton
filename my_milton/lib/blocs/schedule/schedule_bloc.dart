@@ -7,10 +7,13 @@ import 'package:my_milton/models/schedule_model.dart';
 class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
 
   ScheduleRepo scheduleRepo;
-  ScheduleBloc(this.scheduleRepo);
+  ScheduleBloc(this.scheduleRepo) : super(ScheduleNotCalled());
+  // {
+  //   scheduleRepo = ScheduleRepo();
+  // }
 
-  @override
-  ScheduleState get initialState => ScheduleNotCalled();
+  // @override
+  // ScheduleState get initialState => ScheduleNotCalled();
 
   @override
   Stream<ScheduleState> mapEventToState(ScheduleEvent event) async* {
@@ -26,5 +29,9 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     else if(event is RefreshSchedule) {
       yield ScheduleNotCalled();
     }
+  }
+
+  dispose(){
+    
   }
 }
