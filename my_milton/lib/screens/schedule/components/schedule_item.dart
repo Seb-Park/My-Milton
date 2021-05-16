@@ -3,6 +3,8 @@ import 'package:my_milton/models/schedule_model.dart';
 import 'package:my_milton/values/constants.dart';
 import 'package:my_milton/extensions/duration_extension.dart';
 
+//https://stackoverflow.com/questions/52227846/how-can-i-add-shadow-to-the-widget-in-flutter
+
 class ScheduleItem extends StatelessWidget {
   String className;
   String teacher;

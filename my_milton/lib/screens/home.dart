@@ -17,25 +17,45 @@ class _HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            border: Border(top: BorderSide(color: paleBlue, width: 15))),
-        child: CurvedNavigationBar(
-          backgroundColor: paleBlue,
-          color: navBarColor,
-          items: <Widget>[
-            Icon(Icons.calendar_today, size: 30, color: navButtonColor,),
-            Icon(Icons.chat_bubble_outline, size: 30, color: navButtonColor,),
-            Icon(Icons.list, size: 30, color: navButtonColor,),
-          ],
-          onTap: (index) {
-            //Handle button tap
-          },
+      bottomNavigationBar: Material(
+        child: Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 3,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ], border: Border(top: BorderSide(color: paleBlue, width: 15))),
+          child: CurvedNavigationBar(
+            backgroundColor: paleBlue,
+            color: navBarColor,
+            items: <Widget>[
+              Icon(
+                Icons.calendar_today,
+                size: 30,
+                color: navButtonColor,
+              ),
+              Icon(
+                Icons.chat_bubble_outline,
+                size: 30,
+                color: navButtonColor,
+              ),
+              Icon(
+                Icons.list,
+                size: 30,
+                color: navButtonColor,
+              ),
+            ],
+            onTap: (index) {
+              //Handle button tap
+            },
+          ),
         ),
       ),
       body: BlocProvider(
-        create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
-        child: Schedule()),
+          create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
+          child: Schedule()),
     );
   }
 }

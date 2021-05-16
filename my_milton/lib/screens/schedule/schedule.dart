@@ -4,6 +4,7 @@ import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_events.dart';
 import 'package:my_milton/blocs/schedule/schedule_states.dart';
 import 'package:my_milton/components/column_builder.dart';
+import 'package:my_milton/screens/schedule/components/schedule_timeline.dart';
 import 'package:my_milton/screens/schedule/components/top_bar.dart';
 import 'package:my_milton/values/constants.dart';
 import 'components/schedule_item.dart';
@@ -13,20 +14,26 @@ class Schedule extends StatefulWidget {
 
   @override
   _ScheduleState createState() => _ScheduleState();
+
+  ScheduleTimeline scheduleTimeline = new ScheduleTimeline();
 }
 
 class _ScheduleState extends State<Schedule> {
   GlobalKey _scheduleColumnKey = GlobalKey();
+  bool scheduleHasLoaded = false;
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
   }
 
   _afterLayout(_) {
-    // final RenderBox scheduleColumnRenderbox = _scheduleColumnKey.currentContext.findRenderObject();
-    // print(scheduleColumnRenderbox.size.height);
+    if (scheduleHasLoaded) {
+      final RenderBox scheduleColumnRenderbox =
+          _scheduleColumnKey.currentContext.findRenderObject();
+      print(scheduleColumnRenderbox.size.height);
+    }
   }
 
   @override
@@ -36,6 +43,7 @@ class _ScheduleState extends State<Schedule> {
     scheduleBloc.add(FetchSchedule(DateTime.now()));
 
     return BlocBuilder<ScheduleBloc, ScheduleState>(builder: (context, state) {
+      scheduleHasLoaded = (state is ScheduleLoaded);
       if (state is ScheduleNotCalled) {
         return Container();
       } else if (state is ScheduleLoading) {
@@ -53,49 +61,7 @@ class _ScheduleState extends State<Schedule> {
                             topItemDistanceFromTop +
                             scheduleItemMargin,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text("x",
-                                    style: TextStyle(
-                                        color: Colors.transparent,
-                                        fontSize: schedulePeriodFontSize)),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: (defaultDotSize -
-                                              defaultTimelineWidth) /
-                                          2),
-                                  child: Container(
-                                      width: defaultTimelineWidth,
-                                      height: 500,
-                                      child: Material(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(
-                                                    scheduleItemBorderRadius))),
-                                        color: darkGray75,
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(scheduleItemMargin),
-                              child: Container(
-                                  child: SizedBox(
-                                width: schedulePeriodWidth,
-                                height: 20,
-                              )),
-                            ),
-                          ),
-                        ],
-                      ),
+                      widget.scheduleTimeline,
                     ],
                   ),
                   Container(
@@ -116,7 +82,16 @@ class _ScheduleState extends State<Schedule> {
                 ],
               ),
             ),
-            ScheduleTop()
+            ScheduleTop(),
+            MaterialButton(
+              onPressed: () {
+                final RenderBox scheduleColumnRenderbox =
+                    _scheduleColumnKey.currentContext.findRenderObject();
+                widget.scheduleTimeline.lineLength.value =
+                    scheduleColumnRenderbox.size.height - (topBarHeight + topItemDistanceFromTop) - 2 * scheduleItemMargin;//get column builder height but subtract dummy first item. Also subtract 2 sides of the schedule margin
+              },
+              child: Text("Hi"),
+            ),
           ],
         );
       }
