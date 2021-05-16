@@ -23,6 +23,43 @@ const Color palePurple = Color(0xFFd8d8f3);
 const Color paleBlue = Color(0xFFbfebfa);
 const Color paleOcean = Color(0xFFccf4ec);
 const Color paleGreen = Color(0xFFd0f9dc);
-const Color darkGray75 = Color (0xFF4b4b4b);
+const Color darkGray75 = Color(0xFF4b4b4b);
 
-const List<Color> periodColorOrder = [paleOrange,paleRed,palePink,palePurple,paleBlue,paleOcean,paleGreen,paleOrange];
+const List<Color> periodColorOrder = [
+  paleOrange,
+  paleRed,
+  palePink,
+  palePurple,
+  paleBlue,
+  paleOcean,
+  paleGreen,
+  paleOrange
+];
+
+//Gradients
+const Gradient dramaticOrangeGradient = LinearGradient(
+  colors: [Color(0xFFF37335), Color(0xFFFDC830)],
+);
+
+const Gradient subtleLightOrangeGradient =
+    LinearGradient(colors: [Color(0xFFffc67a), Color(0xFFffbc7d)]);
+
+const Gradient subtleRedGradient =
+    LinearGradient(colors: [Color(0xFFff82b0), Color(0xFFff7393)]);
+
+const Gradient subtlePurpleGradient =
+    LinearGradient(colors: [Color(0xFFe591ff), Color(0xFFbfa1ff)]);
+
+const Gradient subtleLightBlueGradient =
+    LinearGradient(colors: [Color(0xFF99d8ff), Color(0xFF91abff)]);
+
+const Gradient subtleCyanGradient =
+    LinearGradient(colors: [Color(0xFF67d7e6), Color(0xFF5ae6df)]);
+
+const Gradient subtleGreenGradient =
+    LinearGradient(colors: [Color(0xFF54e3d0), Color(0xFF84e3cd)]);
+
+const Gradient subtleYellowGradient =
+    LinearGradient(colors: [Color(0xFFf0e595), Color(0xFFe8da92)]);
+
+const List<Gradient> subtleGradientsRainbow = [subtleRedGradient, subtleLightOrangeGradient, subtleYellowGradient, subtleGreenGradient, subtleCyanGradient, subtleLightBlueGradient, subtlePurpleGradient];

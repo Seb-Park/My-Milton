@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_milton/components/gradient_button.dart';
 import 'package:my_milton/models/schedule_model.dart';
 import 'package:my_milton/values/constants.dart';
 import 'package:my_milton/extensions/duration_extension.dart';
+import 'dart:math';
 
 //https://stackoverflow.com/questions/52227846/how-can-i-add-shadow-to-the-widget-in-flutter
 
@@ -13,11 +15,20 @@ class ScheduleItem extends StatelessWidget {
   Color color;
   Duration startTime;
   Duration endTime;
-  
+  Gradient gradient =
+      subtleGradientsRainbow[(Random()).nextInt(subtleGradientsRainbow.length)];
+
   ScheduleItem(
-      {this.className, this.teacher, this.room, this.period, this.color, this.startTime, this.endTime});
+      {this.className,
+      this.teacher,
+      this.room,
+      this.period,
+      this.color,
+      this.startTime,
+      this.endTime,});
 
   Widget build(BuildContext context) {
+    // gradient = subtleGradientsRainbow[period - 1];
     return Container(
       width: double.infinity,
       child: Row(
@@ -39,8 +50,7 @@ class ScheduleItem extends StatelessWidget {
                   Container(
                     height: defaultDotSize,
                     width: defaultDotSize,
-                    child: Material(
-                        color: darkGray75, shape: CircleBorder()),
+                    child: Material(color: darkGray75, shape: CircleBorder()),
                   ),
                 ],
               ),
@@ -49,14 +59,20 @@ class ScheduleItem extends StatelessWidget {
               padding: const EdgeInsets.all(scheduleItemMargin),
               child: Container(
                 width: schedulePeriodWidth,
-                child: MaterialButton(
-                  color: this.color,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(scheduleItemBorderRadius))),
+                child: RaisedGradientButton(
+                  gradient: gradient,
+                  borderRadius: scheduleItemBorderRadius,
+                  shadowColor: gradient.colors[0].withOpacity(.5),
+                  shadowBlur: 4,
+                  // color: this.color,
+                  // shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.all(
+                  //         Radius.circular(scheduleItemBorderRadius))),
                   onPressed: () {},
-                  elevation: 0.0,
+                  elevation: 3.0,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: scheduleItemTextVerticalPadding),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: scheduleItemTextVerticalPadding),
                     child: this.className == null
                         ? SizedBox()
                         : Row(
@@ -73,20 +89,27 @@ class ScheduleItem extends StatelessWidget {
                                       Text(
                                         this.className,
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
                                         overflow: TextOverflow.fade,
                                         softWrap: false,
                                       ),
-                                      Text("${this.teacher} ${this.room}"),
-                                      Text("${TimeMethods.durationToReadableTime(startTime)} - ${TimeMethods.durationToReadableTime(endTime)}",
+                                      Text(
+                                        "${this.teacher} ${this.room}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      Text(
+                                          "${TimeMethods.durationToReadableTime(startTime)} - ${TimeMethods.durationToReadableTime(endTime)}",
                                           style: TextStyle(
-                                              color: Colors.grey,
+                                              // color: Colors.grey,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w300))
                                     ]),
                               ),
                             ],
                           ),
                   ),
+                  // ),
                 ),
               ),
             ),
@@ -94,13 +117,13 @@ class ScheduleItem extends StatelessWidget {
     );
   }
 
-  factory ScheduleItem.fromPeriodModel(PeriodModel periodModel){
+  factory ScheduleItem.fromPeriodModel(PeriodModel periodModel) {
     return ScheduleItem(
       className: periodModel.className,
       teacher: periodModel.teacherLastName,
       room: periodModel.room,
       period: periodModel.periodNumber,
-      color: periodColorOrder[periodModel.periodNumber-1],
+      color: periodColorOrder[periodModel.periodNumber - 1],
       startTime: periodModel.startTime,
       endTime: periodModel.endTime,
     );
