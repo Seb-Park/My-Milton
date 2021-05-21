@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_repository.dart';
+import 'package:my_milton/screens/announcements/announcements.dart';
 import 'package:my_milton/screens/schedule/schedule.dart';
 import 'package:my_milton/values/constants.dart';
 
@@ -14,6 +15,9 @@ class HomeWrapper extends StatefulWidget {
 }
 
 class _HomeWrapperState extends State<HomeWrapper> {
+  int _navBarIndex =
+      0; //need to set up with key so it sets the nav bar to this as well.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +52,19 @@ class _HomeWrapperState extends State<HomeWrapper> {
               ),
             ],
             onTap: (index) {
-              //Handle button tap
+              _navBarIndex = index;
             },
           ),
         ),
       ),
-      body: BlocProvider(
-          create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
-          child: Schedule()),
+      body: _navBarIndex == 0
+          ? BlocProvider(
+              create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
+              child: Schedule())
+          : BlocProvider(
+              create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
+              child: AnnouncementPage(),
+            ),
     );
   }
 }

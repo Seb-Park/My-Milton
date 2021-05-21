@@ -10,6 +10,15 @@ const double scheduleItemBorderRadius = 50;
 const double scheduleItemTextVerticalPadding = 8.0;
 const double scheduleItemMargin = 8.0;
 const double schedulePeriodFontSize = 15.0;
+const double scheduleWeekdayChipBetweenPadding = 3.0;
+
+//Announcements
+const double announcementCardMargin = 8.0;
+const double announcementProfilePicHeight = 60.0;
+const double announcementProfilePicMargin = 8.0;
+
+//Announcement Colors
+const Color announcementCardColor = Colors.white;
 
 //Scaffold
 const Color navBarColor = Color(0xFFf5f5f5);
@@ -63,3 +72,5 @@ const Gradient subtleYellowGradient =
     LinearGradient(colors: [Color(0xFFf0e595), Color(0xFFe8da92)]);
 
 const List<Gradient> subtleGradientsRainbow = [subtleRedGradient, subtleLightOrangeGradient, subtleYellowGradient, subtleGreenGradient, subtleCyanGradient, subtleLightBlueGradient, subtlePurpleGradient];
+
+const Gradient scheduleTopBarGradient = LinearGradient(colors: [Color(0xFF3a7bd5), Color(0xFF00d2ff)], begin: Alignment.topLeft, end: Alignment.bottomRight);

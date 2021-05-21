@@ -1,5 +1,5 @@
-abstract class AnnouncementEvent{}
+abstract class AnnouncementsEvent{}
 
-class FetchAnnouncements extends AnnouncementEvent{}
+class FetchAnnouncements extends AnnouncementsEvent{}
 
-class RefreshAnnouncements extends AnnouncementEvent{}
+class RefreshAnnouncements extends AnnouncementsEvent{}

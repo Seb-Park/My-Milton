@@ -19,22 +19,25 @@ class ScheduleWeekdayChip extends StatefulWidget {
 class _ScheduleWeekdayChipState extends State<ScheduleWeekdayChip> {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-        valueListenable: widget.isActive,
-        builder: (context, value, _) {
-          return ActionChip(
-            onPressed: () {
-              setState(() {
-                widget.onTap();
-              });
-            },
-            backgroundColor: widget.isActive.value ? darkGray75 : Colors.transparent,
-            label: Text(widget.dayName,
-                style: TextStyle(
-                  color: widget.isActive.value ? Colors.white : darkGray75,
-                )),
-            padding: EdgeInsets.symmetric(horizontal: 4.0),
-          );
-        });
+    return Padding(
+      padding: const EdgeInsets.all(scheduleWeekdayChipBetweenPadding),
+      child: ValueListenableBuilder(
+          valueListenable: widget.isActive,
+          builder: (context, value, _) {
+            return ActionChip(
+              onPressed: () {
+                setState(() {
+                  widget.onTap();
+                });
+              },
+              backgroundColor: widget.isActive.value ? darkGray75 : Colors.transparent,
+              label: Text(widget.dayName,
+                  style: TextStyle(
+                    color: widget.isActive.value ? Colors.white : darkGray75,
+                  )),
+              padding: EdgeInsets.symmetric(horizontal: 4.0),
+            );
+          }),
+    );
   }
 }

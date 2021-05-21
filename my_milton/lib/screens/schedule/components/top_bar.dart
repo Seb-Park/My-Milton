@@ -53,10 +53,12 @@ class _ScheduleTopState extends State<ScheduleTop> {
   @override
   Widget build(BuildContext context) {
     _setChipFunctions();
-    return Container(
-      width: double.infinity,
-      height: topBarHeight,
-      child: Material(
+    return Material(
+      elevation: 0.0,
+      child: Container(
+        decoration: BoxDecoration(gradient: scheduleTopBarGradient),
+        width: double.infinity,
+        height: topBarHeight,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -87,7 +89,6 @@ class _ScheduleTopState extends State<ScheduleTop> {
             )
           ],
         ),
-        elevation: 5.0,
       ),
     );
   }
