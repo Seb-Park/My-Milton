@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+//Login
+const TextStyle myMiltonTextStyle = TextStyle(
+    fontFamily: 'Montserrat', fontSize: 40, fontWeight: FontWeight.w500);
+const Color miltonTitleOrange = Color(0xFFfca503);
+
 //Schedule
 const double schedulePeriodWidth = 270;
 const double topBarHeight = 150;
@@ -11,6 +16,7 @@ const double scheduleItemTextVerticalPadding = 8.0;
 const double scheduleItemMargin = 8.0;
 const double schedulePeriodFontSize = 15.0;
 const double scheduleWeekdayChipBetweenPadding = 3.0;
+const double scheduleTopBarInset = 30.0;
 
 //Announcements
 const double announcementCardMargin = 10.0;
@@ -18,12 +24,12 @@ const double announcementCardHeight = 90.0;
 const double announcementCardBorderRadius = 10.0;
 const double announcementProfilePicHeight = 60.0;
 const double announcementProfilePicMargin = 8.0;
-const double announcementTopBarHeight = 120.0;
-const TextStyle announcementTitleTextStyle =
-    TextStyle(fontWeight: FontWeight.bold, color: Colors.black,);
+const double announcementTopBarHeight = 100.0;
+const TextStyle announcementTitleTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+);
 const TextStyle announcementSecondaryTextStyle = TextStyle(color: Colors.grey);
-const double floatingActionButtonSpacing = 8.0;
-
 const String announcementsErrorMessage = "Announcements could not be loaded";
 
 //Announcement Colors
@@ -31,7 +37,12 @@ const Color announcementCardColor = Colors.white;
 
 //Scaffold
 const Color navBarColor = Color(0xFFf5f5f5);
-const Color navButtonColor = Color(0xFFff9e61);
+const Color navBarSecondaryColor = Color(0xFF4abdff);
+// const Color navButtonColor = Color(0xFFff9e61);
+const Color navButtonColor = Color(0xFF4b4b4b);
+
+const double floatingActionButtonSpacing = 8.0;
+const double curvedTopBarCurvature = 30.0;
 
 //Aaron's Class Colors
 const Color paleOrange = Color(0xFFffe3d8);
@@ -90,7 +101,22 @@ const List<Gradient> subtleGradientsRainbow = [
   subtlePurpleGradient
 ];
 
-const Gradient scheduleTopBarGradient = LinearGradient(
+const Gradient mainBrightBlueGradient = LinearGradient(
     colors: [Color(0xFF3a7bd5), Color(0xFF00d2ff)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight);
+
+const Gradient mainBrightOrangeGradient = LinearGradient(
+    colors: [Color(0xFFf83600), Color(0xFFfe8c00)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight);
+
+const Gradient dramaticBrightOrangeGradient = LinearGradient(
+    colors: [Color(0xFFf83600), Color(0xFFffac30)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight);
+
+const Gradient loginScreenGradient = LinearGradient(
+    colors: [Color(0xFF1fd2ff), Color(0xFF82b8ff)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight);

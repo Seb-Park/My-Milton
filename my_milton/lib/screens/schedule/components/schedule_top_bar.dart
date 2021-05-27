@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_milton/components/curved_top_bar_clipper.dart';
 import 'package:my_milton/screens/schedule/components/schedule_day_chip.dart';
 import 'package:my_milton/values/constants.dart';
+import 'package:my_milton/extensions/duration_extension.dart';
 
 class ScheduleTop extends StatefulWidget {
   int dayNum;
@@ -51,43 +53,70 @@ class _ScheduleTopState extends State<ScheduleTop> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _setChipFunctions();
-    return Material(
-      elevation: 0.0,
-      child: Container(
-        decoration: BoxDecoration(gradient: scheduleTopBarGradient),
-        width: double.infinity,
-        height: topBarHeight,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            RichText(
-                text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <TextSpan>[
-                TextSpan(
-                  text: '2021.05.07\n',
-                  style: TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.w400),
-                ),
-                TextSpan(
-                    text: 'FRI', style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold)),
-              ],
-            )),
-            Padding(
+    return CustomPaint(
+      painter: CurvedTopBarShadowPainter(),
+      child: ClipPath(
+        clipper: CurvedTopBarClipper(),
+        child: Material(
+          elevation: 0.0,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: mainBrightBlueGradient,
+            ),
+            width: double.infinity,
+            height: topBarHeight,
+            child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    widget.dayChips[0],
-                    widget.dayChips[1],
-                    widget.dayChips[2],
-                    widget.dayChips[3],
-                    widget.dayChips[4],
-                  ]),
-            )
-          ],
+                  const EdgeInsets.symmetric(horizontal: scheduleTopBarInset),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  RichText(
+                      text: TextSpan(
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: TimeMethods.dateTimeToYYYYMMDD(DateTime.now()) +
+                            "\n",
+                        style: TextStyle(
+                          fontFamily: 'Oswald',
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'FRI',
+                        style: TextStyle(
+                          fontFamily: 'Oswald',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  )),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        widget.dayChips[0],
+                        widget.dayChips[1],
+                        widget.dayChips[2],
+                        widget.dayChips[3],
+                        widget.dayChips[4],
+                      ]),
+                  SizedBox(height: curvedTopBarCurvature),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

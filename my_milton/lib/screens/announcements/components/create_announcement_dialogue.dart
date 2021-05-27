@@ -59,10 +59,10 @@ class _CreateAnnouncementDialogueState
                   elevation: 0,
                   color: Colors.blue,
                   child: Text("Post", style: TextStyle(color: Colors.white)),
-                  onPressed: () {
+                  onPressed: () async {
                     if (titleController.text != null &&
                         titleController.text.length > 0) {
-                      sendPost(titleController.text, contentController.text);
+                      await sendPost(titleController.text, contentController.text);
                       Navigator.pop(context);
                     }
                   },
@@ -76,6 +76,7 @@ class _CreateAnnouncementDialogueState
   }
 
   Future sendPost(String title, String content) async {
+    print("HI!");
     print(title + " " + content);
   }
 }

@@ -32,9 +32,9 @@ class _HomeWrapperState extends State<HomeWrapper> {
               blurRadius: 3,
               offset: Offset(0, 3), // changes position of shadow
             ),
-          ], border: Border(top: BorderSide(color: paleBlue, width: 15))),
+          ], border: Border(top: BorderSide(color: navBarSecondaryColor, width: 15))),
           child: CurvedNavigationBar(
-            backgroundColor: paleBlue,
+            backgroundColor: navBarSecondaryColor,
             color: navBarColor,
             items: <Widget>[
               Icon(

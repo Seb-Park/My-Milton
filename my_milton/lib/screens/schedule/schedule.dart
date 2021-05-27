@@ -24,6 +24,10 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   void initState() {
+    final scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
+
+    scheduleBloc.add(FetchSchedule(DateTime.now()));
+    super.initState();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
   }
@@ -38,10 +42,6 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
-    final scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
-
-    scheduleBloc.add(FetchSchedule(DateTime.now()));
-
     return BlocBuilder<ScheduleBloc, ScheduleState>(builder: (context, state) {
       scheduleHasLoaded = (state is ScheduleLoaded);
       if (state is ScheduleNotCalled) {
@@ -87,8 +87,11 @@ class _ScheduleState extends State<Schedule> {
               onPressed: () {
                 final RenderBox scheduleColumnRenderbox =
                     _scheduleColumnKey.currentContext.findRenderObject();
-                widget.scheduleTimeline.lineLength.value =
-                    scheduleColumnRenderbox.size.height - (topBarHeight + topItemDistanceFromTop) - 2 * scheduleItemMargin;//get column builder height but subtract dummy first item. Also subtract 2 sides of the schedule margin
+                widget
+                    .scheduleTimeline.lineLength.value = scheduleColumnRenderbox
+                        .size.height -
+                    (topBarHeight + topItemDistanceFromTop) -
+                    2 * scheduleItemMargin; //get column builder height but subtract dummy first item. Also subtract 2 sides of the schedule margin
               },
               child: Text("Hi"),
             ),

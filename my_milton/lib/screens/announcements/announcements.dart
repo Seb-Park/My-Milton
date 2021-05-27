@@ -45,7 +45,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
                       state.loadedAnnouncements.announcements[index - 1]);
                 }
                 return SizedBox(
-                  height: announcementTopBarHeight - announcementCardMargin,
+                  height: announcementTopBarHeight,
                 );
               },
             );
@@ -54,20 +54,30 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
         }),
         AnnouncementsTopBar(),
         Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(floatingActionButtonSpacing),
-              child: FloatingActionButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return CreateAnnouncementDialogue();
-                      });
-                },
-                child: Icon(Icons.chat_bubble),
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.all(floatingActionButtonSpacing),
+            child: FloatingActionButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CreateAnnouncementDialogue();
+                    });
+              },
+              child: Container(
+                width: 60,
+                height: 60,
+                child: Icon(
+                  Icons.chat_bubble,
+                  size: 30,
+                ),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, gradient: mainBrightOrangeGradient),
               ),
-            ))
+            ),
+          ),
+        )
       ],
     );
   }
