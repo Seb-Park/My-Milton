@@ -5,7 +5,7 @@ import 'package:my_milton/blocs/schedule/schedule_events.dart';
 import 'package:my_milton/blocs/schedule/schedule_states.dart';
 import 'package:my_milton/components/column_builder.dart';
 import 'package:my_milton/screens/schedule/components/schedule_timeline.dart';
-import 'package:my_milton/screens/schedule/components/top_bar.dart';
+import 'package:my_milton/screens/schedule/components/schedule_top_bar.dart';
 import 'package:my_milton/values/constants.dart';
 import 'components/schedule_item.dart';
 
