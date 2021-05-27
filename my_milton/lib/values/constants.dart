@@ -13,9 +13,18 @@ const double schedulePeriodFontSize = 15.0;
 const double scheduleWeekdayChipBetweenPadding = 3.0;
 
 //Announcements
-const double announcementCardMargin = 8.0;
+const double announcementCardMargin = 10.0;
+const double announcementCardHeight = 90.0;
+const double announcementCardBorderRadius = 10.0;
 const double announcementProfilePicHeight = 60.0;
 const double announcementProfilePicMargin = 8.0;
+const double announcementTopBarHeight = 120.0;
+const TextStyle announcementTitleTextStyle =
+    TextStyle(fontWeight: FontWeight.bold, color: Colors.black,);
+const TextStyle announcementSecondaryTextStyle = TextStyle(color: Colors.grey);
+const double floatingActionButtonSpacing = 8.0;
+
+const String announcementsErrorMessage = "Announcements could not be loaded";
 
 //Announcement Colors
 const Color announcementCardColor = Colors.white;
@@ -71,6 +80,17 @@ const Gradient subtleGreenGradient =
 const Gradient subtleYellowGradient =
     LinearGradient(colors: [Color(0xFFf0e595), Color(0xFFe8da92)]);
 
-const List<Gradient> subtleGradientsRainbow = [subtleRedGradient, subtleLightOrangeGradient, subtleYellowGradient, subtleGreenGradient, subtleCyanGradient, subtleLightBlueGradient, subtlePurpleGradient];
+const List<Gradient> subtleGradientsRainbow = [
+  subtleRedGradient,
+  subtleLightOrangeGradient,
+  subtleYellowGradient,
+  subtleGreenGradient,
+  subtleCyanGradient,
+  subtleLightBlueGradient,
+  subtlePurpleGradient
+];
 
-const Gradient scheduleTopBarGradient = LinearGradient(colors: [Color(0xFF3a7bd5), Color(0xFF00d2ff)], begin: Alignment.topLeft, end: Alignment.bottomRight);
+const Gradient scheduleTopBarGradient = LinearGradient(
+    colors: [Color(0xFF3a7bd5), Color(0xFF00d2ff)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight);

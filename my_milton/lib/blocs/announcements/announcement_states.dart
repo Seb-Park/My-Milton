@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:my_milton/models/Announcements_model.dart';
 import 'package:my_milton/models/announcements_model.dart';
 
 abstract class AnnouncementsState extends Equatable {

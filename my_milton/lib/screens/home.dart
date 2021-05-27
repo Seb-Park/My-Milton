@@ -1,6 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_milton/blocs/announcements/announcement_bloc.dart';
+import 'package:my_milton/blocs/announcements/announcement_repo.dart';
 import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_repository.dart';
 import 'package:my_milton/screens/announcements/announcements.dart';
@@ -52,7 +54,9 @@ class _HomeWrapperState extends State<HomeWrapper> {
               ),
             ],
             onTap: (index) {
-              _navBarIndex = index;
+              setState(() {
+                _navBarIndex = index;
+              });
             },
           ),
         ),
@@ -62,7 +66,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
               create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
               child: Schedule())
           : BlocProvider(
-              create: (BuildContext context) => ScheduleBloc(ScheduleRepo()),
+              create: (BuildContext context) => AnnouncementsBloc(AnnouncementsRepo()),
               child: AnnouncementPage(),
             ),
     );
