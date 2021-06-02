@@ -18,34 +18,34 @@ class TimeMethods {
 
   static String weekdayFromInt(int dayNo) {
     switch (dayNo) {
-      case 1:
+      case DateTime.monday:
         {
           return "Monday";
         }
         break;
 
-      case 2:
+      case DateTime.tuesday:
         {
           return "Tuesday";
         }
         break;
 
-      case 3:
+      case DateTime.wednesday:
         {
           return "Wednesday";
         }
 
-      case 4:
+      case DateTime.thursday:
         {
           return "Thursday";
         }
 
-      case 5:
+      case DateTime.friday:
         {
           return "Friday";
         }
 
-      case 6:
+      case DateTime.saturday:
         {
           return "Saturday";
         }
@@ -145,7 +145,30 @@ class TimeMethods {
         dt.day.toString().padLeft(2, "0");
   }
 
-  static String getShortenedWeekday(DateTime dt){
-    return TimeMethods.weekdayFromInt(dt.weekday).substring(0,3);
+  static String getShortenedWeekday(DateTime dt) {
+    return TimeMethods.weekdayFromInt(dt.weekday).substring(0, 3);
+  }
+
+  static DateTime getDayInTheWeekOf(DateTime dt, int desiredWeekday) {
+    return dt
+        .add(Duration(days: -dt.weekday))
+        .add(Duration(days: desiredWeekday));
+  }
+
+  static bool checkIfDayIsSame(DateTime d1, DateTime d2) {
+    return (d1.day == d2.day && d1.month == d2.month && d1.year == d2.year);
+  }
+
+  static DateTime convertDateTimeToDate(DateTime dt) {
+    return dt.add(Duration(
+        hours: -dt.hour,
+        minutes: -dt.minute,
+        seconds: -dt.second,
+        milliseconds: -dt.millisecond,
+        microseconds: -dt.microsecond));
+  }
+
+  static DateTime addWeeks(DateTime dt, int weeks){
+    return dt.add(Duration(days: weeks * 7));
   }
 }

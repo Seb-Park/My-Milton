@@ -18,7 +18,7 @@ class Schedule extends StatefulWidget {
 
   ScheduleTimeline scheduleTimeline = new ScheduleTimeline();
 
-  var scheduleTop = ScheduleTop();
+  var scheduleTop = ScheduleTop(chipOnPressed: (){});
 }
 
 class _ScheduleState extends State<Schedule> {
@@ -27,9 +27,12 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   void initState() {
-    widget.scheduleTop.setDay(DateTime.now().weekday - 1);
+    widget.scheduleTop.setDay(DateTime.now());
+    print(DateTime.now().weekday);
     final scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
     scheduleBloc.add(FetchSchedule(DateTime.now()));
+    widget.scheduleTop.chipOnPressed = (){
+    };
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
   }

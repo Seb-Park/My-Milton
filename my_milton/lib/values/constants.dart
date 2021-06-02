@@ -20,12 +20,13 @@ const double scheduleItemBorderRadius = 50;
 const double scheduleItemTextVerticalPadding = 8.0;
 const double scheduleItemMargin = 8.0;
 const double schedulePeriodFontSize = 15.0;
-const double scheduleWeekdayChipBetweenPadding = 3.0;
-const double scheduleTopBarInset = 30.0;
+const double scheduleWeekdayChipBetweenPadding = 1.0;
 const IconData scheduleFabIcon = Icons.add;
 
 //Top bar
 const double topBarHeight = 150;
+const double scheduleTopBarInset = 10.0;
+const double scheduleTopBarTitleInset = 25.0;
 const TextStyle topBarDateStyle = TextStyle(
   fontFamily: 'Oswald',
   color: Colors.white,
@@ -37,6 +38,7 @@ const TextStyle topBarWeekdayStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
+const Color scheduleArrowIconsColor = Colors.white;
 
 //Period Popup
 const double periodPopupBorderRadius = 20.0;
