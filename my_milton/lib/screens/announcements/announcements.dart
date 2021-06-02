@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_milton/blocs/announcements/announcement_bloc.dart';
 import 'package:my_milton/blocs/announcements/announcement_events.dart';
 import 'package:my_milton/blocs/announcements/announcement_states.dart';
+import 'package:my_milton/components/substitute_gradient_fab.dart';
 import 'package:my_milton/screens/announcements/components/announcement_card.dart';
 import 'package:my_milton/screens/announcements/components/announcements_top_bar.dart';
 import 'package:my_milton/screens/announcements/components/create_announcement_dialogue.dart';
@@ -53,31 +54,21 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
           return Center(child: Text(announcementsErrorMessage));
         }),
         AnnouncementsTopBar(),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(floatingActionButtonSpacing),
-            child: FloatingActionButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return CreateAnnouncementDialogue();
-                    });
-              },
-              child: Container(
-                width: 60,
-                height: 60,
-                child: Icon(
-                  Icons.chat_bubble,
-                  size: 30,
-                ),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, gradient: mainBrightOrangeGradient),
-              ),
+        SubstituteGradientFAB(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CreateAnnouncementDialogue();
+                  });
+            },
+            child: Icon(
+              createAnnouncementButtonIcon,
+              size: fabIconSize,
             ),
-          ),
-        )
+            gradient: mainBrightOrangeGradient,
+            alignment: Alignment.bottomRight,
+        ),
       ],
     );
   }

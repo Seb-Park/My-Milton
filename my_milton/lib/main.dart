@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_milton/screens/home.dart';
 import 'package:my_milton/screens/login/login_screen.dart';
-import 'screens/schedule/schedule.dart';
 
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
@@ -18,8 +17,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: SafeArea(
           child: Scaffold(
-            // body: HomeWrapper(),
-            body: LoginPage(),
+            body: HomeWrapper(),
+            // body: LoginPage(),
           ),
         ));
   }

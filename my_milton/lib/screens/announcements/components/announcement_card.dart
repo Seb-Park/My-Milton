@@ -57,12 +57,15 @@ class AnnouncementCard extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(announcementProfilePicMargin),
-                child: ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(announcementProfilePicHeight),
-                  child: Image.network(
-                    "https://s3.amazonaws.com/heysummit-production/media/thumbnails/uploads/events/2020-spechapterconferences/2S5tKcLR9KXAwPar5rc8x3_square_large.jpg",
-                    height: announcementProfilePicHeight,
+                child: Container(
+                  width: announcementProfilePicHeight,
+                  child: ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(announcementProfilePicHeight),
+                    child: Image.network(
+                      "https://s3.amazonaws.com/heysummit-production/media/thumbnails/uploads/events/2020-spechapterconferences/2S5tKcLR9KXAwPar5rc8x3_square_large.jpg",
+                      height: announcementProfilePicHeight,
+                    ),
                   ),
                 ),
               ),
@@ -96,7 +99,8 @@ class AnnouncementCard extends StatelessWidget {
                         )),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text("$authorText - ${TimeMethods.weekdayFromInt(timePosted.weekday)}",
+                      child: Text(
+                          "$authorText - ${TimeMethods.weekdayFromInt(timePosted.weekday)}",
                           style: announcementSecondaryTextStyle),
                     ),
                   ],

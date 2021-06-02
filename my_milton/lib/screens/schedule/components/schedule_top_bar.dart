@@ -29,6 +29,12 @@ class ScheduleTop extends StatefulWidget {
     )
   ];
 
+    void setDay(int dayNo) {
+      for (var i = 0; i < dayChips.length; i++) {
+        dayChips[i].setActive(i == dayNo);
+      }
+  }
+
   ScheduleTop({Key key}) : super(key: key);
 
   @override
@@ -36,18 +42,14 @@ class ScheduleTop extends StatefulWidget {
 }
 
 class _ScheduleTopState extends State<ScheduleTop> {
-  void setDay(int dayNo) {
-    setState(() {
-      for (var i = 0; i < widget.dayChips.length; i++) {
-        widget.dayChips[i].setActive(i == dayNo);
-      }
-    });
-  }
+
 
   void _setChipFunctions() {
     for (var i = 0; i < widget.dayChips.length; i++) {
       widget.dayChips[i].onTap = () {
-        setDay(i);
+        setState(() {
+          widget.setDay(i);
+        });
       };
     }
   }
@@ -86,20 +88,12 @@ class _ScheduleTopState extends State<ScheduleTop> {
                       TextSpan(
                         text: TimeMethods.dateTimeToYYYYMMDD(DateTime.now()) +
                             "\n",
-                        style: TextStyle(
-                          fontFamily: 'Oswald',
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
+                        style: topBarDateStyle,
                       ),
                       TextSpan(
-                        text: 'FRI',
-                        style: TextStyle(
-                          fontFamily: 'Oswald',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                        text: TimeMethods.getShortenedWeekday(DateTime.now())
+                            .toUpperCase(),
+                        style: topBarWeekdayStyle,
                       ),
                     ],
                   )),

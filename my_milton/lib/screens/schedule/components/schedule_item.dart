@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_milton/components/gradient_button.dart';
 import 'package:my_milton/models/schedule_model.dart';
+import 'package:my_milton/screens/schedule/components/schedule_period_popup.dart';
 import 'package:my_milton/values/constants.dart';
 import 'package:my_milton/extensions/duration_extension.dart';
 import 'dart:math';
@@ -17,15 +18,18 @@ class ScheduleItem extends StatelessWidget {
   Duration endTime;
   Gradient gradient =
       subtleGradientsRainbow[(Random()).nextInt(subtleGradientsRainbow.length)];
+  String courseCode;
 
-  ScheduleItem(
-      {this.className,
-      this.teacher,
-      this.room,
-      this.period,
-      this.color,
-      this.startTime,
-      this.endTime,});
+  ScheduleItem({
+    this.className,
+    this.teacher,
+    this.room,
+    this.period,
+    this.color,
+    this.startTime,
+    this.endTime,
+    this.courseCode,
+  });
 
   Widget build(BuildContext context) {
     // gradient = subtleGradientsRainbow[period - 1];
@@ -68,7 +72,14 @@ class ScheduleItem extends StatelessWidget {
                   // shape: RoundedRectangleBorder(
                   //     borderRadius: BorderRadius.all(
                   //         Radius.circular(scheduleItemBorderRadius))),
-                  onPressed: () {},
+                  onPressed: () {
+                    return showDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (context) {
+                          return SchedulePeriodPopup.fromScheduleItem(this);
+                        });
+                  },
                   elevation: 3.0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -126,6 +137,7 @@ class ScheduleItem extends StatelessWidget {
       color: periodColorOrder[periodModel.periodNumber - 1],
       startTime: periodModel.startTime,
       endTime: periodModel.endTime,
+      courseCode: periodModel.courseCode,
     );
   }
 }

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 //Login
-const TextStyle myMiltonTextStyle = TextStyle(
-    fontFamily: 'Montserrat', fontSize: 40, fontWeight: FontWeight.w500);
+const TextStyle myMiltonTextStyle =
+    TextStyle(fontFamily: 'Poppins', fontSize: 40, fontWeight: FontWeight.w600);
 const Color miltonTitleOrange = Color(0xFFfca503);
+
+//Floating action buttons
+const double fabIconSize = 30.0;
+
+//Animated Popup
+const Duration animatedPopupAnimationDuration = Duration(milliseconds: 700);
 
 //Schedule
 const double schedulePeriodWidth = 270;
-const double topBarHeight = 150;
 const double defaultDotSize = 15;
 const double defaultTimelineWidth = 3;
 const double topItemDistanceFromTop = 20;
@@ -17,6 +22,26 @@ const double scheduleItemMargin = 8.0;
 const double schedulePeriodFontSize = 15.0;
 const double scheduleWeekdayChipBetweenPadding = 3.0;
 const double scheduleTopBarInset = 30.0;
+const IconData scheduleFabIcon = Icons.add;
+
+//Top bar
+const double topBarHeight = 150;
+const TextStyle topBarDateStyle = TextStyle(
+  fontFamily: 'Oswald',
+  color: Colors.white,
+  fontSize: 20,
+);
+const TextStyle topBarWeekdayStyle = TextStyle(
+  fontFamily: 'Oswald',
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+);
+
+//Period Popup
+const double periodPopupBorderRadius = 20.0;
+const double periodPopupStartHeight = 0.0;
+const double periodPopupPadding = 8.0;
 
 //Announcements
 const double announcementCardMargin = 10.0;
@@ -25,6 +50,8 @@ const double announcementCardBorderRadius = 10.0;
 const double announcementProfilePicHeight = 60.0;
 const double announcementProfilePicMargin = 8.0;
 const double announcementTopBarHeight = 100.0;
+const double createAnnouncementDialogueBorderRadius = 5.0;
+const IconData createAnnouncementButtonIcon = Icons.chat_bubble;
 const TextStyle announcementTitleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.black,
@@ -120,3 +147,5 @@ const Gradient loginScreenGradient = LinearGradient(
     colors: [Color(0xFF1fd2ff), Color(0xFF82b8ff)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight);
+
+const Gradient blankGradient = LinearGradient(colors: []);

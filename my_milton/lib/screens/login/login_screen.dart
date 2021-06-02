@@ -3,9 +3,14 @@ import 'package:my_milton/values/constants.dart';
 
 import 'package:my_milton/screens/home.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -19,7 +24,9 @@ class LoginPage extends StatelessWidget {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    return HomeWrapper();
+                    setState(() {
+                      return HomeWrapper();
+                    });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +59,7 @@ class LoginPage extends StatelessWidget {
                   text: TextSpan(children: <TextSpan>[
                     TextSpan(text: "my", style: myMiltonTextStyle),
                     TextSpan(
-                        text: "Milton",
+                        text: "Milton.",
                         style: myMiltonTextStyle.copyWith(
                             color: miltonTitleOrange)),
                   ]),

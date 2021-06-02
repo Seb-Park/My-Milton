@@ -144,4 +144,8 @@ class TimeMethods {
         "." +
         dt.day.toString().padLeft(2, "0");
   }
+
+  static String getShortenedWeekday(DateTime dt){
+    return TimeMethods.weekdayFromInt(dt.weekday).substring(0,3);
+  }
 }

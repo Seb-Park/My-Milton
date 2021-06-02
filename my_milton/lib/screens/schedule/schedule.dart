@@ -4,6 +4,7 @@ import 'package:my_milton/blocs/schedule/schedule_bloc.dart';
 import 'package:my_milton/blocs/schedule/schedule_events.dart';
 import 'package:my_milton/blocs/schedule/schedule_states.dart';
 import 'package:my_milton/components/column_builder.dart';
+import 'package:my_milton/components/substitute_gradient_fab.dart';
 import 'package:my_milton/screens/schedule/components/schedule_timeline.dart';
 import 'package:my_milton/screens/schedule/components/schedule_top_bar.dart';
 import 'package:my_milton/values/constants.dart';
@@ -16,6 +17,8 @@ class Schedule extends StatefulWidget {
   _ScheduleState createState() => _ScheduleState();
 
   ScheduleTimeline scheduleTimeline = new ScheduleTimeline();
+
+  var scheduleTop = ScheduleTop();
 }
 
 class _ScheduleState extends State<Schedule> {
@@ -24,10 +27,9 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   void initState() {
+    widget.scheduleTop.setDay(DateTime.now().weekday - 1);
     final scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
-
     scheduleBloc.add(FetchSchedule(DateTime.now()));
-    super.initState();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
   }
@@ -37,6 +39,10 @@ class _ScheduleState extends State<Schedule> {
       final RenderBox scheduleColumnRenderbox =
           _scheduleColumnKey.currentContext.findRenderObject();
       print(scheduleColumnRenderbox.size.height);
+      widget.scheduleTimeline.lineLength.value = scheduleColumnRenderbox
+              .size.height -
+          (topBarHeight + topItemDistanceFromTop) -
+          2 * scheduleItemMargin; //get column builder height but subtract dummy first item. Also subtract 2 sides of the schedule margin
     }
   }
 
@@ -49,6 +55,8 @@ class _ScheduleState extends State<Schedule> {
       } else if (state is ScheduleLoading) {
         return Center(child: CircularProgressIndicator());
       } else if (state is ScheduleLoaded) {
+        scheduleHasLoaded = true;
+        WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
         return Stack(
           children: <Widget>[
             SingleChildScrollView(
@@ -82,18 +90,11 @@ class _ScheduleState extends State<Schedule> {
                 ],
               ),
             ),
-            ScheduleTop(),
-            MaterialButton(
-              onPressed: () {
-                final RenderBox scheduleColumnRenderbox =
-                    _scheduleColumnKey.currentContext.findRenderObject();
-                widget
-                    .scheduleTimeline.lineLength.value = scheduleColumnRenderbox
-                        .size.height -
-                    (topBarHeight + topItemDistanceFromTop) -
-                    2 * scheduleItemMargin; //get column builder height but subtract dummy first item. Also subtract 2 sides of the schedule margin
-              },
-              child: Text("Hi"),
+            widget.scheduleTop,
+            SubstituteGradientFAB(
+              onPressed: () {},
+              child: Icon(scheduleFabIcon, size: fabIconSize),
+              gradient: mainBrightOrangeGradient,
             ),
           ],
         );

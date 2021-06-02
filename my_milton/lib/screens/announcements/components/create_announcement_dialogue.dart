@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_milton/values/constants.dart';
 
 class CreateAnnouncementDialogue extends StatefulWidget {
   CreateAnnouncementDialogue({Key key}) : super(key: key);
@@ -30,7 +31,7 @@ class _CreateAnnouncementDialogueState
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+          borderRadius: BorderRadius.all(Radius.circular(createAnnouncementDialogueBorderRadius))),
       content: Stack(
         alignment: Alignment.center,
         children: <Widget>[
